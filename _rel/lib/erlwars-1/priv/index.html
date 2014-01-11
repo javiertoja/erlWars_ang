@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<title>ERL WARS</title>
+	<link rel="icon"  type="image/x-icon" href="images/erlwars1.ico">
+
+	<link rel="stylesheet" type="text/css" media="screen" href="styles/base.css" />
+
+
+	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/tablero.js"></script>
+	<script type="text/javascript" src="js/websocket.js"></script>
+</head>
+<body>
+	<iframe id="fondo" src="http://www.chiptune.com/starfield/starfield.html" ></iframe>
+
+	<div id="cabecera">
+		<img id="logo" src="images/logo.png" alt="ERL WARS">
+		<div id="error"></div>
+		<input id="fondoOnOff" type="button" value="Fondo On/Off" class="button"/>
+	</div>
+	<div id="campoBatalla" class="contenido">
+		<div>
+			<div id="panelJuego" class="panel">
+				<div id="batalla"></div>
+				<div class="fondoModal"></div>
+			</div>
+			<div id="panelNuestro" class="panel">
+				<div id="nick"></div>
+				<div class="fondoModal"></div>
+			</div>
+			<div id="naves"></div>
+			<div id="botones">
+				<input id="botonListo" type="button" class="button" value="Listo">
+				<input id="botonSalir" type="button" class="button" value="Salir">
+			</div>
+		</div>
+	</div>
+	<div id="login" class="contenido">
+		<div class="panelLogin">
+			<h2>Batallas en Curso</h2>
+			<div id="contenedorPartidas" class="borde">
+				<table id="tablaPartidas">
+				</table>
+			</div>
+		</div>
+		<div class="panelLogin">
+			<h2>Nick</h2>
+			<input id="textBoxNick" type="text"/>
+			<br/>
+			<br/>
+			<h2>Nave</h2>
+			
+			<input id="xwing" type="radio" name="ship" value="xwing" checked="checked">
+			<label for="xwing">
+				<div class="nave xwing"></div>
+			</label>
+
+			<input id="tie" type="radio" name="ship" value="tie">
+			<label for="tie">
+				<div class="nave tie"></div>
+			</label>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<br/>
+			<h2>Crear Partida</h2>
+			<input id="textBoxPartida" type="text"/>
+			<input id="botonCrearPartida" type="button" class="button" value="Crear"/>
+		</div>
+	</div>
+	<div class="fondoModal">
+	</div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{application, erlwars, [
+	{description, "Juego ERL Wars."},
+	{vsn, "1"},
+	{modules, []},
+	{registered, []},
+	{applications, [
+		kernel,
+		stdlib,
+		cowboy
+	]},
+	{mod, {erlwars_app, []}},
+	{env, []}
+]}.

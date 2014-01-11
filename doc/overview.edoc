@@ -1,0 +1,12 @@
+%% -*- coding: utf-8 -*-
+
+@title ErlWars Basic Edition
+@version 0.1.3
+@author Alejandro Pernas Pan <alejandro.pernas@udc.es>
+@author Laura Otero Méndez <inslom01@udc.es﻿>
+@author Javier Toja Alamancos <insjta00@udc.es﻿>
+@author Sergio Cores Acha <sergio.cores@udc.es>
+@copyright (C) 2014
+@doc
+ErlWars es un equivalente al popular juego "Hundir la flota" en versión espacial, escrito en Erlang y JavaScript.
+@end
