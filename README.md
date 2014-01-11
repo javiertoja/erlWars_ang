@@ -74,8 +74,8 @@ Ejecución :
 Componentes del grupo 7 :
 
   - Alejandro Pernas Pan <alejandro.pernas@udc.es>
-  - Laura Otero Méndez <inslom01@udc.es﻿>
-  - Javier Toja Alamancos <insjta00@udc.es﻿>
+  - Laura Otero Méndez <laura.otero@udc.es﻿>
+  - Javier Toja Alamancos <javier.toja@udc.es﻿>
   - Sergio Cores Acha <sergio.cores@udc.es>
 
 
