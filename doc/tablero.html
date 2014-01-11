@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Module tablero</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" title="EDoc">
+</head>
+<body bgcolor="white">
+<div class="navbar"><a name="#navbar_top"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<hr>
+
+<h1>Module tablero</h1>
+<ul class="index"><li><a href="#description">Description</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>
+   Este módulo implementa el tablero individual para un jugador de erlwars.
+<p>Copyright © (C) 2014</p>
+
+<p><b>Authors:</b> Alejandro Pernas Pan (<a href="mailto:alejandro.pernas@udc.es"><tt>alejandro.pernas@udc.es</tt></a>), Laura Otero Méndez (<a href="mailto:inslom01@udc.es﻿"><tt>inslom01@udc.es﻿</tt></a>), Javier Toja Alamancos (<a href="mailto:insjta00@udc.es﻿"><tt>insjta00@udc.es﻿</tt></a>), Sergio Cores Acha (<a href="mailto:sergio.cores@udc.es"><tt>sergio.cores@udc.es</tt></a>).</p>
+
+<h2><a name="description">Description</a></h2>
+   Este módulo implementa el tablero individual para un jugador de erlwars. En este
+   tablero se ubican las naves del jugador. Cada posición del tablero admite 4 estados.
+   <h3><a name="Estados_de_las_celdas_del_tablero">Estados de las celdas del tablero</a></h3>
+   <ul>
+   <li><em>?VACIO</em>: La celda del tablero está vacía y no alberga ninguna nave.</li>
+   <li><em>?NAVE</em>: La celda del tablero representa una nave del jugador que aún no ha sido abatida.</li>
+   <li><em>?NAVEALCANZADA</em>: La celda del tablero representa una nave del jugador que ha sido abatida.</li>
+   <li><em>?NAVE</em>: La celda del tablero representa una nave del jugador que aún no ha sido abatida.</li>
+   <li><em>?NAVE</em>: Otro jugador ha disparado a la posición, representada por la celda, pero no existía ninguna nave ubicada en ella.</li>
+   </ul>
+<h2><a name="index">Function Index</a></h2>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#disparo-3">disparo/3</a></td><td>
+   Esta función permite disparar a una posición, en el tablero del jugador pasado como parámetro, en las coordenadas (Y,X).</td></tr>
+<tr><td valign="top"><a href="#estan_naves_posicionadas-1">estan_naves_posicionadas/1</a></td><td>
+   Esta función permite saber si un jugador ha terminado de colocar sus naves en el tablero.</td></tr>
+<tr><td valign="top"><a href="#get_posiciones-1">get_posiciones/1</a></td><td>
+   Esta función devuelve un diccionario con el estado de las posiciones del tablero pasado como parámetro.</td></tr>
+<tr><td valign="top"><a href="#get_resultado-3">get_resultado/3</a></td><td>
+   Esta función permite obtener el estado actual de una celda del tablero.</td></tr>
+<tr><td valign="top"><a href="#posicionar_nave-3">posicionar_nave/3</a></td><td>
+   Esta función permite posicionar una nave en el tablero del jugador, pasado como parámetro, en las coordenadas (Y,X).</td></tr>
+<tr><td valign="top"><a href="#start_link-0">start_link/0</a></td><td>
+   Esta función crea un nuevo proceso tablero.</td></tr>
+<tr><td valign="top"><a href="#todo_destruido-1">todo_destruido/1</a></td><td>
+   Esta función permite saber si todas las naves de un determinado tablero han sido alcanzadas.</td></tr>
+</table>
+
+<h2><a name="functions">Function Details</a></h2>
+
+<h3 class="function"><a name="disparo-3">disparo/3</a></h3>
+<div class="spec">
+<p><tt>tablero:disparo(Tablero::pid(), X::integer(), Y::integer()) -&gt; atom()</tt><br></p>
+</div><p>
+   Esta función permite disparar a una posición, en el tablero del jugador pasado como parámetro, en las coordenadas (Y,X).
+   Para ello envía un mensaje con la información necesaria al tablero del jugador.
+   <h3><a name="Valor_de_retorno">Valor de retorno</a></h3>
+   Esta función retorna ?VACIO, ?NAVE, ?NAVEALCANZADA, ?DISPARADO o ?ERROR, en función del estado en el que se encuentre
+   el tablero del jugador.</p>
+
+<h3 class="function"><a name="estan_naves_posicionadas-1">estan_naves_posicionadas/1</a></h3>
+<div class="spec">
+<p><tt>tablero:estan_naves_posicionadas(Tablero::pid()) -&gt; atom()</tt><br></p>
+</div><p>
+   Esta función permite saber si un jugador ha terminado de colocar sus naves en el tablero.
+   <h3><a name="Valor_de_retorno">Valor de retorno</a></h3>
+   <ul>
+   <li><em>true</em>: Si el jugador ha terminado de posicionar todas sus naves en el tablero.</li>
+   <li><em>false</em>: En caso contrario.</li>
+   </ul></p>
+
+<h3 class="function"><a name="get_posiciones-1">get_posiciones/1</a></h3>
+<div class="spec">
+<p><tt>tablero:get_posiciones(Tablero::pid()) -&gt; dict()</tt><br></p>
+</div><p>
+   Esta función devuelve un diccionario con el estado de las posiciones del tablero pasado como parámetro.
+   <h3><a name="Parámetros">Parámetros</a></h3>
+   <ul>
+   <li><em>Tablero</em>: Pid del proceso tablero objetivo.</li>
+   </ul>
+   <h3><a name="Valor_de_retorno">Valor de retorno</a></h3>
+   Un diccionario cuya clave es la tupla {X,Y} (coordenada de una celda del tablero) y cuyo valor es uno de
+   los estados en el que se puede encontrar la celda: ?VACIO, ?NAVE, ?NAVEALCANZADA, ?DISPARADO.</p>
+
+<h3 class="function"><a name="get_resultado-3">get_resultado/3</a></h3>
+<div class="spec">
+<p><tt>tablero:get_resultado(Tablero::pid(), X::integer(), Y::integer()) -&gt; {atom(), atom()} | atom()</tt><br></p>
+</div><p>
+   Esta función permite obtener el estado actual de una celda del tablero.
+   <h3><a name="Parámetros">Parámetros</a></h3>
+   <ul>
+   <li><em>X,Y</em>: Coordenadas de la celda del tablero.</li>
+   <li><em>Tablero</em>: Pid del proceso tablero objetivo.</li>
+   </ul>
+   <h3><a name="Valor_de_retorno">Valor de retorno</a></h3>
+   Esta función retorna:
+   {ok,?VACIO}, {ok,?NAVE}, {ok,?NAVEALCANZADA}, {ok,?DISPARADO} o ?ERROR, en función del estado en el que se encuentre
+   la celda del tablero del jugador.</p>
+
+<h3 class="function"><a name="posicionar_nave-3">posicionar_nave/3</a></h3>
+<div class="spec">
+<p><tt>tablero:posicionar_nave(Tablero::pid(), X::integer(), Y::integer()) -&gt; atom()</tt><br></p>
+</div><p>
+   Esta función permite posicionar una nave en el tablero del jugador, pasado como parámetro, en las coordenadas (Y,X).
+   Para ello envía un mensaje con la información necesaria al tablero del jugador.
+   <h3><a name="Valor_de_retorno">Valor de retorno</a></h3>
+   <ul>
+   <li><em>ok</em>: Retorna siempre ?OK (predefinido al átomo ok).</li>
+   </ul></p>
+
+<h3 class="function"><a name="start_link-0">start_link/0</a></h3>
+<div class="spec">
+<p><tt>tablero:start_link() -&gt; pid()</tt><br></p>
+</div><p>
+   Esta función crea un nuevo proceso tablero.
+   <h3><a name="Valor_de_retorno">Valor de retorno</a></h3>
+   <ul>
+   <li><em>Pid</em>: El pid del nuevo proceso creado.</li>
+   </ul></p>
+
+<h3 class="function"><a name="todo_destruido-1">todo_destruido/1</a></h3>
+<div class="spec">
+<p><tt>tablero:todo_destruido(Tablero::pid()) -&gt; atom()</tt><br></p>
+</div><p>
+   Esta función permite saber si todas las naves de un determinado tablero han sido alcanzadas.
+   <h3><a name="Valor_de_retorno">Valor de retorno</a></h3>
+   <ul>
+   <li><em>true</em>: Si todas las naves han sido destruidas.</li>
+   <li><em>false</em>: En caso contrario.</li>
+   </ul></p>
+<hr>
+
+<div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<p><i>Generated by EDoc, Jan 11 2014, 16:48:29.</i></p>
+</body>
+</html>

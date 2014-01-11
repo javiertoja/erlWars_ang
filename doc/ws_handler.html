@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Module ws_handler</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" title="EDoc">
+</head>
+<body bgcolor="white">
+<div class="navbar"><a name="#navbar_top"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<hr>
+
+<h1>Module ws_handler</h1>
+<ul class="index"><li><a href="#description">Description</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>
+   Este módulo implementa el servidor web al que se conecta el cliente web durante el juego erlwars.
+<p>Copyright © (C) 2014</p>
+
+<p><b>Behaviours:</b> <a href="cowboy_websocket_handler.html"><tt>cowboy_websocket_handler</tt></a>.</p>
+<p><b>Authors:</b> Alejandro Pernas Pan (<a href="mailto:alejandro.pernas@udc.es"><tt>alejandro.pernas@udc.es</tt></a>), Laura Otero Méndez (<a href="mailto:inslom01@udc.es﻿"><tt>inslom01@udc.es﻿</tt></a>), Javier Toja Alamancos (<a href="mailto:insjta00@udc.es﻿"><tt>insjta00@udc.es﻿</tt></a>), Sergio Cores Acha (<a href="mailto:sergio.cores@udc.es"><tt>sergio.cores@udc.es</tt></a>).</p>
+
+<h2><a name="description">Description</a></h2>
+   Este módulo implementa el servidor web al que se conecta el cliente web durante el juego erlwars.
+   Utiliza cowboy y el protocolo websocket para la comunicación entre el cliente y el servidor. Está
+   basado en el behaviour cowboy_websocket_handler proporcionado por cowboy.
+   <h3><a name="Información_adicional">Información adicional</a></h3>
+   <ul>
+   <li><a href="https://github.com/extend/cowboy/blob/master/manual/cowboy_websocket_handler.md" target="_top"><tt>https://github.com/extend/cowboy/blob/master/manual/cowboy_websocket_handler.md</tt></a></li>
+   <li><a href="https://github.com/extend/cowboy/blob/master/manual/cowboy_req.md" target="_top"><tt>https://github.com/extend/cowboy/blob/master/manual/cowboy_req.md</tt></a></li>
+   </ul>
+<h2><a name="index">Function Index</a></h2>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#init-3">init/3</a></td><td>
+   Esta función actualiza el protocolo a cowboy_websocket.</td></tr>
+<tr><td valign="top"><a href="#websocket_handle-3">websocket_handle/3</a></td><td>
+   Esta función maneja los datos recibidos desde la conexión WebSocket.</td></tr>
+<tr><td valign="top"><a href="#websocket_info-3">websocket_info/3</a></td><td>
+   Esta función se invoca cada vez que este proceso (servidor web) recibe un mensaje Erlang.</td></tr>
+<tr><td valign="top"><a href="#websocket_init-3">websocket_init/3</a></td><td>
+   Esta función inicializa el estado para esta sesión.</td></tr>
+<tr><td valign="top"><a href="#websocket_terminate-3">websocket_terminate/3</a></td><td>
+   Cierra la conexión y termina el proceso.</td></tr>
+</table>
+
+<h2><a name="functions">Function Details</a></h2>
+
+<h3 class="function"><a name="init-3">init/3</a></h3>
+<div class="spec">
+<p><tt>ws_handler:init(X1::{TransportName::atom(), ProtocolName::atom()}, _Req::<a href="cowboy_req.html#type-req">cowboy_req:req()</a>, _Opts::any()) -&gt; {atom(), atom(), atom()}</tt><br></p>
+</div><p>
+   Esta función actualiza el protocolo a cowboy_websocket.
+   <h3><a name="Parámetros_de_entrada">Parámetros de entrada</a></h3>
+   <ul>
+   <li><em>TransportName</em>: El atom tcp.</li>
+   <li><em>ProtocolName</em>: El atom http.</li>
+   <li><em>Req</em>: cowboy_req:req().</li>
+   </ul>
+   <h3><a name="Valor_de_retorno">Valor de retorno</a></h3>
+   <ul>
+   <li>Retorna la tupla {upgrade, protocol, cowboy_websocket}.</li>
+   </ul></p>
+
+<h3 class="function"><a name="websocket_handle-3">websocket_handle/3</a></h3>
+<div class="spec">
+<p><tt>ws_handler:websocket_handle(MensajeDesconocido::{Text::atom(), Msg::binary()}, Req::<a href="cowboy_req.html#type-req">cowboy_req:req()</a>, State::any()) -&gt; {Reply::atom(), {Text::atom(), Content::binary()}, Req::<a href="cowboy_req.html#type-req">cowboy_req:req()</a>, State::any()}</tt><br></p>
+</div><p>
+   Esta función maneja los datos recibidos desde la conexión WebSocket. Se invoca cada vez que se reciben datos
+   por la conexión.
+   <h3><a name="Parámetros_de_entrada">Parámetros de entrada</a></h3>
+   <ul>
+   <li><em>Text</em>: El atom text.</li>
+   <li><em>Msg</em>: El mensaje recibido en binario.</li>
+   <li><em>Req</em>: cowboy_req:req().</li>
+   <li><em>Req</em>: any().</li>
+   </ul>
+   <h3><a name="Valor_de_retorno">Valor de retorno</a></h3>
+   <ul>
+   <li><em>Reply</em>: El atom reply.</li>
+   <li><em>Content</em>: El contenido de la respuesta en binario.</li>
+   <li><em>Req</em>: cowboy_req:req().</li>
+   <li><em>State</em>: any().</li>
+   </ul></p>
+
+<h3 class="function"><a name="websocket_info-3">websocket_info/3</a></h3>
+<div class="spec">
+<p><tt>ws_handler:websocket_info(Info::{TipoMensaje::atom(), Ref::reference(), Msg::any()}, Req::<a href="cowboy_req.html#type-req">cowboy_req:req()</a>, State::any()) -&gt; {Reply::atom(), {Text::atom(), Content::binary()}, Req::<a href="cowboy_req.html#type-req">cowboy_req:req()</a>, State::any()}</tt><br></p>
+</div><p>
+   Esta función se invoca cada vez que este proceso (servidor web) recibe un mensaje Erlang.
+   En concreto, se emplea para reenviar los mensajes Erlang, recibidos por este proceso, al
+   cliente web. Recepción de mensajes asíncronos y reenvío.
+   <h3><a name="Parámetros_de_entrada">Parámetros de entrada</a></h3>
+   <ul>
+   <li><em>TipoMensaje</em>: Identifica el tipo de mensaje que se enviará al cliente web.</li>
+   <li><em>Ref</em>: Referencia que permite identificar el mensaje concreto.</li>
+   <li><em>Msg</em>: any().</li>
+   <li><em>Req</em>: cowboy_req:req().</li>
+   <li><em>State</em>: any().</li>
+   </ul>
+   <h3><a name="Valor_de_retorno">Valor de retorno</a></h3>
+   <ul>
+   <li><em>Reply</em>: El atom reply.</li>
+   <li><em>Content</em>: El contenido de la respuesta en binario.</li>
+   <li><em>Req</em>: cowboy_req:req().</li>
+   <li><em>State</em>: any().</li>
+   </ul></p>
+
+<h3 class="function"><a name="websocket_init-3">websocket_init/3</a></h3>
+<div class="spec">
+<p><tt>ws_handler:websocket_init(TransportName::atom(), Req::<a href="cowboy_req.html#type-req">cowboy_req:req()</a>, _Opts::any()) -&gt; {atom(), <a href="cowboy_req.html#type-req">cowboy_req:req()</a>, atom()}</tt><br></p>
+</div><p>
+   Esta función inicializa el estado para esta sesión.
+   Es invocada antes de que la actualización a WebSocket ocurra. Puede ser usada para negociar extensiones del
+   protocolo websocket con el cliente.
+   <h3><a name="Parámetros_de_entrada">Parámetros de entrada</a></h3>
+   <ul>
+   <li><em>TransportName</em>: El atom tcp.</li>
+   <li><em>Req</em>: cowboy_req:req().</li>
+   </ul>
+   <h3><a name="Valor_de_retorno">Valor de retorno</a></h3>
+   <ul>
+   <li>Retorna la tupla {ok, Req, undefined_state}.</li>
+   </ul></p>
+
+<h3 class="function"><a name="websocket_terminate-3">websocket_terminate/3</a></h3>
+<div class="spec">
+<p><tt>ws_handler:websocket_terminate(_Reason::tuple(), _Req::<a href="cowboy_req.html#type-req">cowboy_req:req()</a>, _State::any()) -&gt; atom()</tt><br></p>
+</div><p>
+   Cierra la conexión y termina el proceso.
+   <h3><a name="Parámetros_de_entrada">Parámetros de entrada</a></h3>
+   <ul>
+   <li><em>Reason</em>: Razón por la que se termina la conexión.</li>
+   <li><em>Req</em>: cowboy_req:req().</li>
+   <li><em>State</em>: any().</li>
+   </ul>
+   <h3><a name="Valor_de_retorno">Valor de retorno</a></h3>
+   <ul>
+   <li>Retorna el átomo ok.</li>
+   </ul></p>
+<hr>
+
+<div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<p><i>Generated by EDoc, Jan 11 2014, 16:48:29.</i></p>
+</body>
+</html>

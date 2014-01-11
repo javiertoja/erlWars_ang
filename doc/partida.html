@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Module partida</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css" title="EDoc">
+</head>
+<body bgcolor="white">
+<div class="navbar"><a name="#navbar_top"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<hr>
+
+<h1>Module partida</h1>
+<ul class="index"><li><a href="#description">Description</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>
+   Este módulo representa una partida en curso del juego erlwars.
+<p>Copyright © (C) 2014</p>
+
+<p><b>Authors:</b> Alejandro Pernas Pan (<a href="mailto:alejandro.pernas@udc.es"><tt>alejandro.pernas@udc.es</tt></a>), Laura Otero Méndez (<a href="mailto:inslom01@udc.es﻿"><tt>inslom01@udc.es﻿</tt></a>), Javier Toja Alamancos (<a href="mailto:insjta00@udc.es﻿"><tt>insjta00@udc.es﻿</tt></a>), Sergio Cores Acha (<a href="mailto:sergio.cores@udc.es"><tt>sergio.cores@udc.es</tt></a>).</p>
+
+<h2><a name="description">Description</a></h2>
+   Este módulo representa una partida en curso del juego erlwars. Una partida se
+   compone de jugadores, cada uno de los cuales tiene un tablero asignado. La partida
+   también contiene un tablero maestro, para mantener información general sobre la misma.
+<h2><a name="index">Function Index</a></h2>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#abandonar_partida-2">abandonar_partida/2</a></td><td>
+   Esta función permite informar a la partida que un jugador ha abandonado, ya sea voluntariamente
+   o por desconexion
+   <h3><a name="Parámetros_de_entrada">Parámetros de entrada</a></h3>
+   <ul>
+   <li><em>Partida</em>: El Pid de la partida a la que se informa.</li>
+   <li><em>Nick</em>: El Nick del jugador que deja la partida.</li>
+   </ul></td></tr>
+<tr><td valign="top"><a href="#disparar-4">disparar/4</a></td><td>
+   Esta función permite disparar a la posición especificada de los tableros de otros jugadores.</td></tr>
+<tr><td valign="top"><a href="#join-3">join/3</a></td><td>
+   Esta función permite a un jugador unirse a una partida.</td></tr>
+<tr><td valign="top"><a href="#posicionar_nave-4">posicionar_nave/4</a></td><td>
+   Esta función permite a un jugador posicionar su nave en su tablero de la partida.</td></tr>
+<tr><td valign="top"><a href="#start-3">start/3</a></td><td>
+   Esta función crea un nuevo proceso partida.</td></tr>
+</table>
+
+<h2><a name="functions">Function Details</a></h2>
+
+<h3 class="function"><a name="abandonar_partida-2">abandonar_partida/2</a></h3>
+<div class="spec">
+<p><tt>partida:abandonar_partida(Partida::pid(), Nick::string()) -&gt; no_return()</tt><br></p>
+</div><p>
+   Esta función permite informar a la partida que un jugador ha abandonado, ya sea voluntariamente
+   o por desconexion
+   <h3><a name="Parámetros_de_entrada">Parámetros de entrada</a></h3>
+   <ul>
+   <li><em>Partida</em>: El Pid de la partida a la que se informa.</li>
+   <li><em>Nick</em>: El Nick del jugador que deja la partida.</li>
+   </ul></p>
+
+<h3 class="function"><a name="disparar-4">disparar/4</a></h3>
+<div class="spec">
+<p><tt>partida:disparar(Partida::pid(), Nick::string(), X::integer(), Y::integer()) -&gt; integer()</tt><br></p>
+</div><p>
+   Esta función permite disparar a la posición especificada de los tableros de otros jugadores.
+   <h3><a name="Parámetros_de_entrada">Parámetros de entrada</a></h3>
+   <ul>
+   <li><em>Partida</em>: El Pid de la partida en la que se desea disparar.</li>
+   <li><em>Nick</em>: Nick de la persona que dispara en la partida.</li>
+   <li><em>X,Y</em>: Coordenadas de la posición en la que se desea disparar.</li>
+   </ul>
+   <h3><a name="Valor_de_retorno">Valor de retorno</a></h3>
+   <ul>
+   <li><em>Número de aciertos:</em>: .</li>
+   </ul></p>
+
+<h3 class="function"><a name="join-3">join/3</a></h3>
+<div class="spec">
+<p><tt>partida:join(Partida::pid(), Nick::string(), PidCliente::pid()) -&gt; atom()</tt><br></p>
+</div><p>
+   Esta función permite a un jugador unirse a una partida.
+   <h3><a name="Parámetros_de_entrada">Parámetros de entrada</a></h3>
+   <ul>
+   <li><em>Partida</em>: El Pid de la partida a la que el jugador desea unirse.</li>
+   <li><em>Nick</em>: Nick del jugador que desea unirse a la partida.</li>
+   <li><em>PidCliente</em>: Pid del cliente que desea unirse a la partida.</li>
+   </ul>
+   <h3><a name="Valor_de_retorno">Valor de retorno</a></h3>
+   <ul>
+   <li><em>ok:</em>: En caso de que el jugador sea integrado correctamente en la partida.</li>
+   <li><em>error:</em>: En otro caso.</li>
+   </ul></p>
+
+<h3 class="function"><a name="posicionar_nave-4">posicionar_nave/4</a></h3>
+<div class="spec">
+<p><tt>partida:posicionar_nave(Partida::pid(), Nick::string(), X::integer(), Y::integer()) -&gt; no_return()</tt><br></p>
+</div><p>
+   Esta función permite a un jugador posicionar su nave en su tablero de la partida.
+   <h3><a name="Parámetros_de_entrada">Parámetros de entrada</a></h3>
+   <ul>
+   <li><em>Partida</em>: El Pid de la partida en la que se desea posicionar la nave.</li>
+   <li><em>Nick</em>: Nick del jugador cuya nave es posicionada en el tablero de la partida.</li>
+   <li><em>X,Y</em>: Coordenadas de la posición en el tablero en la que se desea posicionar la nave.</li>
+   </ul></p>
+
+<h3 class="function"><a name="start-3">start/3</a></h3>
+<div class="spec">
+<p><tt>partida:start(NombrePartida::string(), Propietario::string(), PidCliente::pid()) -&gt; pid()</tt><br></p>
+</div><p>
+   Esta función crea un nuevo proceso partida.
+   <h3><a name="Parámetros_de_entrada">Parámetros de entrada</a></h3>
+   <ul>
+   <li><em>NombrePartida</em>: El nombre asignado a la partida.</li>
+   <li><em>Propietario</em>: Nick de la persona que crea la partida.</li>
+   <li><em>PidCliente</em>: Pid del proceso que crea la partida.</li>
+   </ul>
+   <h3><a name="Valor_de_retorno">Valor de retorno</a></h3>
+   <ul>
+   <li><em>Pid</em>: Pid del nuevo proceso.</li>
+   </ul></p>
+<hr>
+
+<div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
+<p><i>Generated by EDoc, Jan 11 2014, 16:48:29.</i></p>
+</body>
+</html>
