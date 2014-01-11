@@ -54,10 +54,9 @@ Test :
 Ejecución :
 
   - Para ejecutar la práctica una vez compilada se debe de ejecutar el script
-    'run.sh N' el cual desplegara el servidor de juego y lanzara N clientes
-    para poder realizar una prueba. En caso de lanzar 0 clientes se levantará
-    unicamente el servidor de juego, para poder levantar los clientes despues
-    ejecutar 'cliente.sh N', este script levantara N clientes en un navegdor
+    'run.sh' el cual desplegara el servidor de juego. Para levantar clientes
+    para realizar partidas ejecutar 'cliente.sh N', este script levantara 1
+    cliente en un navegdor
     web firefox.
 
   - Para detener el servidor ejecutar en la terminal Contrl + c, Contrl +q.
